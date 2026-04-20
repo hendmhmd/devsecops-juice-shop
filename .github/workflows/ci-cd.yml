@@ -2,15 +2,14 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -20,13 +19,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests (if any)
+      - name: Build (if exists)
+        run: npm run build || echo "No build step"
+
+      - name: Test
         run: npm test || echo "No tests yet"
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy message
-        run: echo "Deploy stage here (AWS/Docker/Render etc)"
