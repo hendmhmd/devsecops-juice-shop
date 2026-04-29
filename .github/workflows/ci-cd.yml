@@ -31,6 +31,7 @@ jobs:
           image-ref: hendmhmd00/devsecops-juice-shop:latest
           format: 'table'
           exit-code: '1'
+        
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
 
